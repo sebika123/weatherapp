@@ -58,30 +58,43 @@ async function getWeather(lat = null, lon = null, city = null) {
 function displayWeather(location, current) {
   const weatherResult = document.getElementById('weather-result');
   const condition = current.condition.text.toLowerCase();
+  const icon = current.condition.icon;
 
+  //checs i icon is day or night
+  const isDay = icon.includes("day");
 
-
-
-    const backgroundImages = {
-      sunny: 'sunny.jpg',
-      clear: 'sunny.jpg',
-      rain: 'rainy.jpg',
-      cloudy: 'cloudy.jpg',
-      overcast: 'cloudy.jpg',
-    
-    };
-    
-    let backgroundImage = 'sunny.jpg';
-    
-    
-    for (const [key, value] of Object.entries(backgroundImages)) {
-      if (condition.includes(key)) {
-        backgroundImage = value;
-        break;
-      }
+  const backgroundImages = {
+    sunny: {
+      day: 'sunny.jpg',
+      night: 'sunny.jpg'
+    },
+    clear: {
+      day: 'clear.jpg',
+      night: 'clearn.jpg'
+    },
+    rain: {
+      day: 'rainday.jpg',
+      night: 'rainy.jpg'
+    },
+    cloudy: {
+      day: 'cloudyd.jpg',
+      night: 'cloudy.jpg'
+    },
+    overcast: {
+      day: 'cloudyd.jpg',
+      night: 'cloudy.jpg'
     }
-    
-    // Set the background image
+  };
+
+//dynamic images according to day and night
+  let backgroundImage = isDay ? 'sunny.jpg' : 'clearn.jpg'; //this is by default
+
+  for (const [key, value] of Object.entries(backgroundImages)) {
+    if (condition.includes(key)) {
+      backgroundImage = isDay ? value.day : value.night;
+      break;
+    }
+  }
     document.body.style.backgroundImage = `url('images/${backgroundImage}')`;
     
 

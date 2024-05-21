@@ -14,7 +14,7 @@ body {
     background-color: #333;
     color: #fff;
     padding: 5px 0;
-    height:50px;
+    height:60px;
   }
   
   .navbar .container {
@@ -26,11 +26,11 @@ body {
   }
   
   .logo {
-    left: 0px;
+  
     font-size: 1.5rem;
     font-weight: bold;
-    padding:5px;
-    left:0%;
+    padding:10px;
+   margin-right: 200dvh;
   }
   
   .navbar-menu {
@@ -41,21 +41,28 @@ body {
     display: flex;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: -50px;
+
+  
   }
   
   .nav-list li {
     margin-right: 20px;
+    margin-bottom: 500vh;
+ 
   }
   
   .nav-link {
     color: #fff;
     text-decoration: none;
+    margin-left: 10dvh;
+
   }
   
 
   .weather-form {
     margin-bottom: 20px;
+    margin-left: 300px;
   }
   
   .weather-form input[type="text"] {
@@ -70,6 +77,9 @@ body {
     border: none;
     color: #fff;
     cursor: pointer;
+    margin-left: 230px;
+    margin-top: -40px;
+    display:flex;
   }
   
   .weather-form button:hover {
