@@ -1,4 +1,6 @@
 
+// bacgroundImage=document.getElementsByClassName('background-image');
+
 
 document.addEventListener('DOMContentLoaded', () => {
   if (navigator.geolocation) {
@@ -19,32 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Geolocation is not supported by this browser.');
   }
 
-
-  // VANTA.FOG({
-  //   el: "#vanta-bg",
-  //   mouseControls: true,
-  //   touchControls: true,
-  //   minHeight: 200.00,
-  //   minWidth: 200.00,
-  //   highlightColor: 0xff00ff,
-  //   midtoneColor: 0x00ff00,
-  //   lowlightColor: 0x0000ff,
-  //   baseColor: 0x000000,
-  //   blurFactor: 0.45,
-  //   speed: 2.00
-  // });
-
-  VANTA.CLOUDS({
-    el: "#your-element-selector",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00
-  })
-
 });
-
 
 
 
@@ -76,8 +53,39 @@ async function getWeather(lat = null, lon = null, city = null) {
   }
 }
 
+
+
 function displayWeather(location, current) {
   const weatherResult = document.getElementById('weather-result');
+  const condition = current.condition.text.toLowerCase();
+
+
+
+
+    const backgroundImages = {
+      sunny: 'sunny.jpg',
+      clear: 'sunny.jpg',
+      rain: 'rainy.jpg',
+      cloudy: 'cloudy.jpg',
+      overcast: 'cloudy.jpg',
+    
+    };
+    
+    let backgroundImage = 'sunny.jpg';
+    
+    
+    for (const [key, value] of Object.entries(backgroundImages)) {
+      if (condition.includes(key)) {
+        backgroundImage = value;
+        break;
+      }
+    }
+    
+    // Set the background image
+    document.body.style.backgroundImage = `url('images/${backgroundImage}')`;
+    
+
+
   weatherResult.innerHTML = `
     <h2>${location.name}, ${location.country}</h2>
     <p>Local Time: ${location.localtime}</p>
