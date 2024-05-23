@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
  
@@ -25,7 +26,9 @@
           <li>
             <div class="weather-form">
             <input type="text" id="city" placeholder="Enter city name">
-            <button onclick="getWeather()">Get Weather</button>
+            <button id="search-button" onclick="getWeather()"><i class="material-icons">search</i></button>
+    
+            <!-- <button onclick="getWeather()">Get Weather</button> -->
           </div>
         </li>
         

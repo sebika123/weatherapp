@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
     font-family: Arial, sans-serif;
   }
@@ -112,3 +112,118 @@ body {
     flex-direction: column;
   }
   
+
+
+   */
+
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+}
+
+.navbar {
+    background-color: #2196F3;
+    padding: 10px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar-brand .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-menu .nav-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu .nav-link {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.weather-form {
+    display: flex;
+    align-items: center;
+}
+
+.weather-form input {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.weather-form button {
+    background-color: #FF5722;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.weather-form button i {
+    vertical-align: middle;
+}
+
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+#weather-result {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: left;
+    width: 80%;
+    max-width: 600px;
+}
+
+#weather-result img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+#weather-result h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.weather-detail {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.weather-detail i {
+    margin-right: 10px;
+}
+
+.weather-detail-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.weather-detail-container .weather-detail {
+    width: 48%;
+}
