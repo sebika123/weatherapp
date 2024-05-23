@@ -135,17 +135,29 @@ function displayWeather(location, current) {
   `;
 }
 
-
+let user=[];
 function loginUser(){
+
     const username = document.querySelector('#username').value
     const password = document.querySelector('#password').value
-
+    
     if(username.trim().length === 0 || password.trim().length === 0){
         alert('All fields are required')
         return
     }
 
+    // if(!user.includes(username) && username!==""){
+    //     localStorage.setItem('username',username)
+    //     // localStorage.setItem('password',password)
+    //     user.push(username);
+    //   }
+
+    //   console.log({user});
+
+
     localStorage.setItem('username',username)
+    // user.push(username);
+    // console.log({user});
     localStorage.setItem('password',password)
 
     // window.location.href = "http://127.0.0.1:5500"

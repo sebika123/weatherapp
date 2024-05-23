@@ -1,4 +1,18 @@
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.sky-blue {
+    color: #3498db;
+    size:40px;
+}   
+
+
    body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -37,10 +51,13 @@
     padding: 0;
 }
 
-.navbar-menu .nav-link {
+.navbar-menu .nav-list a.nav-link {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 80px;
+    margin-top: 20px;
+ text-align: center;
+    font-size: 20px;
 }
 
 .weather-form {
@@ -166,7 +183,7 @@ button:hover {
 }
 
 
-/* Center the loader */
+
 #loader {
   position: absolute;
   left: 50%;
@@ -192,7 +209,6 @@ button:hover {
   100% { transform: rotate(360deg); }
 }
 
-/* Add animation to "page content" */
 .animate-bottom {
   position: relative;
   -webkit-animation-name: animatebottom;
