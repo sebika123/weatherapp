@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
           (position) => {
               const { latitude, longitude } = position.coords;
               getWeather(latitude, longitude);
+
           },
           (error) => {
               console.error('Error getting geolocation', error);
@@ -61,12 +62,26 @@ document.addEventListener('DOMContentLoaded', () => {
 //   }
 
 
-
+let arr2 = [];
 
 async function getWeather(lat = null, lon = null, city = null) {
+    // let data =[];
+    
   if (!city) {
+  
       city = document.getElementById('city').value;
       localStorage.setItem('lastSearchedCity', city);
+
+      console.log({city});
+   
+      if(!arr2.includes(city) && city!==""){
+
+        arr2.push(city);
+      }
+
+      console.log({arr2});
+
+
   }
 
   const apiKey = 'd560441e76454b1e88b164029242005';
@@ -98,7 +113,7 @@ function displayWeather(location, current) {
   const backgroundImages = {
       sunny: {
           day: 'sunny.jpg',
-          night: 'sunny.jpg'
+        //   night: 'sunny.jpg'
       },
       clear: {
           day: 'clear.jpg',
@@ -143,4 +158,13 @@ function displayWeather(location, current) {
           <div class="weather-detail"><i class="material-icons">air</i> Gust Speed: ${current.gust_kph} km/h (${current.gust_mph} mph)</div>
       </div>
   `;
+}
+
+
+
+function displayData(username,password){
+    const userName=document.getElementById("username");
+    const password=document.getElementById("password");
+    console.log("hj",userName);
+
 }
