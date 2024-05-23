@@ -113,7 +113,7 @@ function displayWeather(location, current) {
   const backgroundImages = {
       sunny: {
           day: 'sunny.jpg',
-        //   night: 'sunny.jpg'
+          night: 'sunny.jpg'
       },
       clear: {
           day: 'clear.jpg',
@@ -142,6 +142,14 @@ function displayWeather(location, current) {
   }
   document.body.style.backgroundImage = `url('images/${backgroundImage}')`;
 
+// function displayDetails(username,password){
+//     const userName=document.getElementById("username");
+//     const passWord=document.getElementById("password");
+//     console.log("hj",userName);
+
+// }
+
+
   weatherResult.innerHTML = `
       <h2>${location.name}, ${location.country}</h2>
       <div class="weather-detail-container">
@@ -162,9 +170,3 @@ function displayWeather(location, current) {
 
 
 
-function displayData(username,password){
-    const userName=document.getElementById("username");
-    const password=document.getElementById("password");
-    console.log("hj",userName);
-
-}
