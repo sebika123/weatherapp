@@ -87,7 +87,7 @@ async function getWeather(lat = null, lon = null, city = null) {
   const apiKey = 'd560441e76454b1e88b164029242005';
   let url;
   if (lat && lon) {
-      url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
+      url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&country=nepal`;
   } else {
       url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
   }
@@ -169,4 +169,21 @@ function displayWeather(location, current) {
 }
 
 
+function loginUser(){
+    const username = document.querySelector('#username').value
+    const password = document.querySelector('#password').value
 
+    if(username.trim().length === 0 || password.trim().length === 0){
+        alert('All fields are required')
+        return
+    }
+
+    localStorage.setItem('username',username)
+    localStorage.setItem('password',password)
+
+    // window.location.href = "http://127.0.0.1:5500"
+
+
+
+
+}
