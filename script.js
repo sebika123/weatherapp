@@ -33,52 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// const loginLink = document.getElementById('login-link');
-//     const loginModal = document.getElementById('login-modal');
-//     const closeButton = document.getElementById('close-button');
-//     const loginForm = document.getElementById('login-form');
-//     if (loginLink && loginModal && closeButton && loginForm) {
-//     loginLink.addEventListener('click', () => {
-//         loginModal.style.display = 'flex';
-//     });
-
-//     closeButton.addEventListener('click', () => {
-//         loginModal.style.display = 'none';
-//     });
-
-//     window.addEventListener('click', (event) => {
-//         if (event.target === loginModal) {
-//             loginModal.style.display = 'none';
-//         }
-//     });
-
-//     loginForm.addEventListener('submit', (event) => {
-//         event.preventDefault();
-//         const username = document.getElementById('username').value;
-//         const password = document.getElementById('password').value;
-
-//         if (username && password) {
-//             const users = JSON.parse(localStorage.getItem('users')) || [];
-//             users.push({ username, password });
-//             localStorage.setItem('users', JSON.stringify(users));
-//             alert('Login successful!');
-//             loginModal.style.display = 'none';
-//         } else {
-//             alert('Please enter both username and password.');
-//         }
-      
-//     });
-//   }
-//   else {
-
-//     console.log("Error in displaying login");
-//   }
-
 
 let arr2 = [];
 
 async function getWeather(lat = null, lon = null, city = null) {
-    // let data =[];
+
     
   if (!city) {
   
@@ -155,12 +114,7 @@ function displayWeather(location, current) {
   }
   document.body.style.backgroundImage = `url('images/${backgroundImage}')`;
 
-// function displayDetails(username,password){
-//     const userName=document.getElementById("username");
-//     const passWord=document.getElementById("password");
-//     console.log("hj",userName);
 
-// }
 
 
   weatherResult.innerHTML = `
