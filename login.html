@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
- 
 </head>
 <body>
   <nav class="navbar">
@@ -22,13 +21,14 @@
 
 
           <li><a href="login.html" class="nav-link">Login</a></li>
+         
         
           <li>
             <div class="weather-form">
             <input type="text" id="city" placeholder="Enter city name">
             <button id="search-button" onclick="getWeather()"><i class="material-icons">search</i></button>
     
-            <!-- <button onclick="getWeather()">Get Weather</button> -->
+        
           </div>
         </li>
         
@@ -36,28 +36,22 @@
       </div>
     </div>
   </nav>
-
-  <div class="container">
-  <div class="background-image">
-
-    <!-- <div id="login-modal" class="modal">
-      <div class="modal-content">
-          <span class="close-button" id="close-button">&times;</span>
-          <h2>Login</h2>
-          <form id="login-form">
-              <label for="username">Username:</label>
-              <input type="text" id="username" name="username" required>
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password" required>
-              <button type="submit">Login</button>
-          </form>
-      </div>
-  </div> -->
-
-  </div>
-    <div id="weather-result"></div>
-  </div>
-
-  <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <button type="submit">Login</button>
+                </div>
 </body>
 </html>
