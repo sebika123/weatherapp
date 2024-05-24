@@ -11,70 +11,127 @@ function showPage() {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-          (position) => {
-              const { latitude, longitude } = position.coords;
-              getWeather(latitude, longitude);
+// document.addEventListener('DOMContentLoaded', () => {
+//   if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//           (position) => {
+//               const { latitude, longitude } = position.coords;
+//               getWeather(latitude, longitude);
 
-          },
-          (error) => {
-              console.error('Error getting geolocation', error);
-              const lastSearchedCity = localStorage.getItem('lastSearchedCity');
-              if (lastSearchedCity) {
-                  getWeather(null, null, lastSearchedCity);
-              }
-          }
-      );
-  } else {
-      console.error('Geolocation is not supported by this browser.');
-  }
-});
+//           },
+//           (error) => {
+//               console.error('Error getting geolocation', error);
+//               const lastSearchedCity = localStorage.getItem('lastSearchedCity');
+//               if (lastSearchedCity) {
+//                   getWeather(null, null, lastSearchedCity);
+//               }
+//           }
+//       );
+//   } else {
+//       console.error('Geolocation is not supported by this browser.');
+//   }
+// });
+function getWeatherByGeolocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                getWeather(latitude, longitude);
+            },
+            (error) => {
+                console.error('Error getting geolocation', error);
+                const lastSearchedCity = localStorage.getItem('lastSearchedCity');
+                if (lastSearchedCity) {
+                    getWeather(null, null, lastSearchedCity);
+                }
+            }
+        );
+    } else {
+        console.error('Geolocation is not supported by this browser.');
+    }
+}
+
+// Call the function to get weather by geolocation when the page loads
+getWeatherByGeolocation();
 
 
 
-let arr2 = [];
+// let arr2 = [];
 
-async function getWeather(lat = null, lon = null, city = null) {
+// async function getWeather(lat = null, lon = null, city = null) {
 
     
-  if (!city) {
+//   if (!city) {
   
-      city = document.getElementById('city').value;
-      localStorage.setItem('lastSearchedCity', city);
+//       city = document.getElementById('city').value;
+//       localStorage.setItem('lastSearchedCity', city);
 
-      console.log({city});
+//       console.log({city});
    
-      if(!arr2.includes(city) && city!==""){
+//       if(!arr2.includes(city) && city!==""){
 
-        arr2.push(city);
-      }
+//         arr2.push(city);
+//       }
 
-      console.log({arr2});
+//       console.log({arr2});
 
 
-  }
+//   }
 
-  const apiKey = 'd560441e76454b1e88b164029242005';
-  let url;
-  if (lat && lon) {
-      url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&country=nepal`;
-  } else {
-      url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
-  }
+//   const apiKey = 'd560441e76454b1e88b164029242005';
+//   let url;
+//   if (lat && lon) {
+//       url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&country=nepal`;
+//   } else {
+//       url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+//   }
 
-  try {
-      const response = await fetch(url);
-      if (!response.ok) {
-          throw new Error('City not found');
-      }
-      const data = await response.json();
-      displayWeather(data.location, data.current);
-  } catch (error) {
-      document.getElementById('weather-result').innerHTML = `<p>${error.message}</p>`;
-  }
+//   try {
+//       const response = await fetch(url);
+//       if (!response.ok) {
+//           throw new Error('City not found');
+//       }
+//       const data = await response.json();
+//       displayWeather(data.location, data.current);
+//   } catch (error) {
+//       document.getElementById('weather-result').innerHTML = `<p>${error.message}</p>`;
+//   }
+// }
+async function getWeather(lat = null, lon = null, city = null) {
+    const currentUser = localStorage.getItem('currentUser');
+ 
+    const userData = JSON.parse(localStorage.getItem(currentUser));
+    
+    if (!city) {
+        city = document.getElementById('city').value;
+    }
+
+    if (city && !userData.searchHistory.includes(city)) {
+        userData.searchHistory.push(city);
+        localStorage.setItem(currentUser, JSON.stringify(userData));
+    }
+
+    const apiKey = 'd560441e76454b1e88b164029242005';
+    let url;
+    if (lat && lon) {
+        url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&country=nepal`;
+    } else {
+        url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+    }
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('City not found');
+        }
+        const data = await response.json();
+        displayWeather(data.location, data.current);
+    } catch (error) {
+        document.getElementById('weather-result').innerHTML = `<p>${error.message}</p>`;
+    }
 }
+
+
 
 function displayWeather(location, current) {
   const weatherResult = document.getElementById('weather-result');
@@ -135,34 +192,70 @@ function displayWeather(location, current) {
   `;
 }
 
-let user=[];
-function loginUser(){
+function loginUser(event){
+    event.preventDefault(); // Prevent the form from submitting
 
-    const username = document.querySelector('#username').value
-    const password = document.querySelector('#password').value
-    
+    const username = document.querySelector('#username').value;
+    const password = document.querySelector('#password').value;
+
     if(username.trim().length === 0 || password.trim().length === 0){
-        alert('All fields are required')
-        return
+        alert('All fields are required');
+        return;
     }
 
-    // if(!user.includes(username) && username!==""){
-    //     localStorage.setItem('username',username)
-    //     // localStorage.setItem('password',password)
-    //     user.push(username);
-    //   }
+    const userData = {
+        username,
+        password,
+        searchHistory: []
+    };
 
-    //   console.log({user});
+    localStorage.setItem(username, JSON.stringify(userData));
+    localStorage.setItem('currentUser', username);
 
-
-    localStorage.setItem('username',username)
-    // user.push(username);
-    // console.log({user});
-    localStorage.setItem('password',password)
-
-    // window.location.href = "http://127.0.0.1:5500"
-
-
-
-
+    window.location.href = "index.html";
 }
+
+
+function showHistory() {
+    const currentUser = localStorage.getItem('currentUser');
+    const userData = JSON.parse(localStorage.getItem(currentUser));
+    const historyList = document.getElementById('history-list');
+
+    historyList.innerHTML = '';
+    userData.searchHistory.forEach((city) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = city;
+        historyList.appendChild(listItem);
+    });
+
+    document.getElementById('history-modal').style.display = 'block';
+}
+
+function closeHistory() {
+    document.getElementById('history-modal').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                getWeather(latitude, longitude);
+            },
+            (error) => {
+                console.error('Error getting geolocation', error);
+                const lastSearchedCity = localStorage.getItem('lastSearchedCity');
+                if (lastSearchedCity) {
+                    getWeather(null, null, lastSearchedCity);
+                }
+            }
+        );
+    } else {
+        console.error('Geolocation is not supported by this browser.');
+    }
+
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+        document.getElementById('show-history-button').style.display = 'block';
+    }
+});
