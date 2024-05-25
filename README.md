@@ -31,6 +31,8 @@ This is a simple Weather App that allows users to fetch and display the current 
     bash
 
 git clone https://github.com/sebika123/weatherapp.git
+# Live demo
+https://sebika123.github.io/weatherapp/
 
 # Navigate to the project directory:
 
